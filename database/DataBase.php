@@ -132,4 +132,20 @@ class Database{
 
     }
 
+    public function createTable($sql){
+
+        try{
+
+            $this->connection->exec($sql);
+            return true;
+
+        }catch (PDOException $e) {
+            
+            echo $e->getMessage();
+            return false;
+
+        }
+
+    }
+
 }

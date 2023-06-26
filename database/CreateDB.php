@@ -83,4 +83,14 @@ class CreateDB extends Database{
 
           ];
 
+          public function run(){
+
+            foreach ($this->createTableQueries as $createTableQuery){
+
+              $this->createTable($createTableQuery);
+
+            }
+
+          }
+
 }
