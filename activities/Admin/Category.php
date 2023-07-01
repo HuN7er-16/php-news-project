@@ -6,7 +6,7 @@ class Category{
 
     public function index(){
 
-        echo 'hi';
+        
 
     }
 
