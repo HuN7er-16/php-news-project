@@ -83,14 +83,30 @@ class CreateDB extends Database{
 
           ];
 
-          public function run(){
+          // private $tableInitializes = [
 
-            foreach ($this->createTableQueries as $createTableQuery){
+          //   ['table' => 'users', 'fields' =>[
+          //     'username', 'email', 'password', 'permission'
+          //   ], 'values' => [
+          //     'amira2', 'amirali@yahoo.com', '123456', 'admin'
+          //   ]]
 
-              $this->createTable($createTableQuery);
+          // ];
 
-            }
+          // public function run(){
 
-          }
+          //   foreach ($this->createTableQueries as $createTableQuery){
+
+          //     $this->createTable($createTableQuery);
+
+          //   }
+
+          //   foreach($this->tableInitializes as $tableInitialize){
+
+          //     $this->insert($tableInitialize['table'], $tableInitialize['fields'], $tableInitialize['values']);
+
+          //   }
+
+          // }
 
 }

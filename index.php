@@ -15,6 +15,11 @@ define('DB_USERNAME', 'Amirali_Hosseini');
 define('DB_PASSWORD', '44266007');
 
 
+require_once 'database/DataBase.php';
+require_once 'database/CreateDB.php';
+require_once 'activities/Admin/Category.php';
+
+
 
 //helpers
 function uri($reservedUrl, $class, $method, $requestMethod = 'GET'){
@@ -156,3 +161,10 @@ function dd($var){
     var_dump($var);
     exit;
 }
+
+
+//category
+uri('admin/category', 'Admin\Category', 'index');
+
+
+echo '404- page not found';
