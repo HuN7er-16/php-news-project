@@ -17,6 +17,7 @@ define('DB_PASSWORD', '44266007');
 
 require_once 'database/DataBase.php';
 require_once 'database/CreateDB.php';
+require_once 'activities/Admin/admin.php';
 require_once 'activities/Admin/Category.php';
 
 

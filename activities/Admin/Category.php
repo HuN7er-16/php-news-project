@@ -2,11 +2,11 @@
 
 namespace Admin;
 
-class Category{
+class Category extends Admin{
 
     public function index(){
 
-        echo 'hi';
+        require_once (BASE_PATH . '/template/admin/categories/index.php');
 
     }
 
