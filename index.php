@@ -167,4 +167,4 @@ function dd($var){
 uri('admin/category', 'Admin\Category', 'index');
 
 
-echo '404- page not found';
+// echo '404- page not found';
