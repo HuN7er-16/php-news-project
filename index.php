@@ -27,13 +27,13 @@ function uri($reservedUrl, $class, $method, $requestMethod = 'GET'){
     //current url array
     $currentUrl = explode('?',currentUrl())[0];
     $currentUrl = str_replace(CURRENT_DOMAIN, '', $currentUrl);
-    $currentUrl = trim($currentUrl, '/ ');
+    $currentUrl = trim($currentUrl, '/');
     $currentUrlArray = explode('/', $currentUrl);
     $currentUrlArray = array_filter($currentUrlArray);
 
 
     //reserver Url array
-    $reservedUrl = trim($reservedUrl, '/ ');
+    $reservedUrl = trim($reservedUrl, '/');
     $reservedUrlArray = explode('/', $reservedUrl);
     $reservedUrlArray = array_filter($reservedUrlArray);
 
@@ -165,6 +165,13 @@ function dd($var){
 
 //category
 uri('admin/category', 'Admin\Category', 'index');
+uri('admin/category/create', 'Admin\Category', 'create');
+uri('admin/category/store', 'Admin\Category', 'store', 'POST');
+uri('admin/category/edit/{id}', 'Admin\Category', 'edit');
+uri('admin/category/update/{id}', 'Admin\Category', 'update', 'POST');
+uri('admin/category/delete/{id}', 'Admin\Category', 'delete');
 
 
-// echo '404- page not found';
+echo '404- page not found';
+
+
