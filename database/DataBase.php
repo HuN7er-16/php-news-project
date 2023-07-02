@@ -80,7 +80,7 @@ class DataBase{
     //update
     public function update($tableName, $id, $fields, $values){
 
-        $sql = "UPDATE " . $tableName . "SET ";
+        $sql = "UPDATE " . $tableName . " SET ";
         foreach(array_combine($fields, $values) as $field => $value){
 
             if($value){
@@ -96,7 +96,7 @@ class DataBase{
         }
 
         $sql .= " updated_at = now()";
-        $sql .= " WHERE id = ?";
+        $sql .= " WHERE id = ? ;";
         try{
 
             $stmt = $this->connection->prepare($sql);
