@@ -48,7 +48,7 @@ function uri($reservedUrl, $class, $method, $requestMethod = 'GET'){
     $parameters = [];
     for($key = 0; $key < sizeof($reservedUrlArray); $key++){
 
-        if($reservedUrlArray[$key][0] == "{" and $reservedUrlArray[$key][strlen($reservedUrlArray[$key]) - 1] == "}"){
+        if($reservedUrlArray[$key][0] =="{" and $reservedUrlArray[$key][strlen($reservedUrlArray[$key]) - 1] =="}"){
 
             array_push($parameters, $currentUrlArray[$key]);
 

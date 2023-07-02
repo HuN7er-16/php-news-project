@@ -5,7 +5,7 @@ namespace database;
 use PDO;
 use PDOException;
 
-class Database{
+class DataBase{
 
     private $connection;
     private $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -22,7 +22,6 @@ class Database{
         try{
 
             $this->connection = new PDO("mysql:host=" . $this->dbHost . ";dbname=" . $this->dbName, $this->dbUserName, $this->dbPassword, $this->options);
-            echo 'ok';
 
         }catch (PDOException $e) {
             
