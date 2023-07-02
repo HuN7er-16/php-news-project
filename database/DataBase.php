@@ -64,7 +64,7 @@ class DataBase{
 
         try{
 
-            $stmt = $this->connection->prepare("INSERT INTO " . $tableName . "(" . implode(', ', $fields) . ", created_at) VALUES (:" . implode(', :', $values) . ", now() );");
+            $stmt = $this->connection->prepare("INSERT INTO " . $tableName . "(" . implode(', ', $fields) . ", created_at) VALUES (:" . implode(', :', $fields) . ", now() );");
             $stmt->execute(array_combine($fields, $values));
             return true;
 
