@@ -12,23 +12,24 @@
 <script src="<?= asset('public/jalalidatepicker/persian-datepicker.min.js') ?>"></script>
 
 <script>
-    $(document).ready(function(){
-        CKEDITOR.replace("summary");
-        CKEDITOR.replace("body");
+$(document).ready(function(){
+        CKEDITOR.replace('summary');
+        CKEDITOR.replace('body');
 
-        $("#published_at_view").persianDatePicker({
+        $("#published_at_view").persianDatepicker({
 
-            format: 'YYYY-MM-DD HH:mm:ss',
-            toolbox: {
-                calenderSwitch:{
-                    enabled: true
-                }
-            },
-            observer: true,
-            altField: '#published_at'
+                format: 'YYYY-MM-DD HH:mm:ss',
+                toolbox:{
+                        calendarSwitch:{
+                                enabled: true
+                        }
+                },
+                observer: true,
+                altField: '#published_at'
 
         })
-    })
+});
+
 </script>
 
 </body>
