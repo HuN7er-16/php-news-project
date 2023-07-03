@@ -16,7 +16,9 @@ class Post extends Admin{
 
     public function create(){
 
-        require_once (BASE_PATH . '/template/admin/categories/create.php');
+        $db = new DataBase();
+        $categories = $db->select('SELECT * FROM categories ORDER BY `id` ASC');
+        require_once (BASE_PATH . '/template/admin/posts/create.php');
 
     }
 
@@ -32,7 +34,7 @@ class Post extends Admin{
 
         $db = new DataBase();
         $Post = $db->select('SELECT * FROM categories WHERE `id` = ?;', [$id])->fetch();
-        require_once (BASE_PATH . '/template/admin/categories/edit.php');
+        require_once (BASE_PATH . '/template/admin/posts/edit.php');
 
     }
 
