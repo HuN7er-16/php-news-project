@@ -26,7 +26,7 @@ class CreateDB extends Database{
             UNIQUE KEY (`email`)
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;",
   
-          "CREATE TABLE `articles` (
+          "CREATE TABLE `s` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `title` varchar(200) COLLATE utf8_persian_ci NOT NULL,
             `summary` text COLLATE utf8_persian_ci NOT NULL,
