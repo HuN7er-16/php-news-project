@@ -18,7 +18,7 @@ class Admin{
 
     }
 
-    protected function redirectBack($url){
+    protected function redirectBack(){
 
         header('location: '. $_SERVER['HTTP_REFERER']);
         exit;
@@ -63,7 +63,8 @@ class Admin{
 
     protected function removeImage($path){
 
-        $path = trim($this->basePath, '/ ' . '/' . trim($path , '/ '));
+        $path = trim($path , '/ ');
+        
         if(file_exists($path)){
 
             unlink($path);

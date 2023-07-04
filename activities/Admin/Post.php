@@ -37,13 +37,13 @@ class Post extends Admin{
                 $this->redirect('admin/post');
 
             }else{
-                dd('hi1');
+                
                 $this->redirect('admin/post');
 
             }
 
         }else{
-            dd('hi2');
+            
             $this->redirect('admin/post');
 
         }
@@ -68,11 +68,57 @@ class Post extends Admin{
     }
 
     public function delete($id){
-
+        
         $db = new DataBase();
-        $db->delete('categories', $id);
-        $this->redirect('admin/post');
+        $post = $db->select('SELECT * FROM posts WHERE id = ?;', [$id])->fetch();
+        $this->removeImage($post['image']);
+        $db->delete('posts', $id);
+        $this->redirectBack();
 
+    }
+    
+    public function selected($id){
+        
+        $db = new DataBase();
+        $post = $db->select('SELECT * FROM posts WHERE id = ?;', [$id])->fetch();
+        if(empty($post)){
+
+            $this->redirectBack();
+
+        }
+        if($post['selected'] == 1){
+
+            $db->update('posts', $id, ['selected'], [2]);
+
+        }else{
+
+            $db->update('posts', $id, ['selected'], [1]);
+
+        }  
+        $this->redirectBack();
+
+    }
+
+    public function breakingNews($id){
+        
+        $db = new DataBase();
+        $post = $db->select('SELECT * FROM posts WHERE id = ?;', [$id])->fetch();
+        if(empty($post)){
+    
+            $this->redirectBack();
+    
+        }
+        if($post['breaking_news'] == 1){
+    
+            $db->update('posts', $id, ['breaking_news'], [2]);
+    
+        }else{
+    
+            $db->update('posts', $id, ['breaking_news'], [1]);
+    
+        }  
+        $this->redirectBack();
+    
     }
 
 }

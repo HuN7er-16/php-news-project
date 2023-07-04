@@ -55,15 +55,15 @@ require_once(BASE_PATH . '/template/admin/layouts/header.php');
                 </td>
                 <td><img style="width: 80px;" src="<?= asset($post['image']) ?>" alt=""></td>
                 <td style="width: 25rem;">
-                    <a role="button" class="btn btn-sm btn-warning btn-dark text-white" href="">
+                    <a role="button" class="btn btn-sm btn-warning btn-dark text-white" href="<?= url('admin/post/breaking-news/' . $post['id']) ?>">
                        <?= $post['breaking_news'] == 1 ? 'remove breaking news' : 'add breaking news' ?>
                     </a>
-                    <a role="button" class="btn btn-sm btn-warning btn-dark text-white" href="">
-                       <?= $post['selected'] == 1 ? 'remove selcted' : 'add selected' ?>
+                    <a role="button" class="btn btn-sm btn-warning btn-dark text-white" href="<?= url('admin/post/selected/' . $post['id']) ?>">
+                       <?= $post['selected'] == 1 ? 'remove selected' : 'add selected' ?>
                     </a>
                     <hr class="my-1" />
                     <a role="button" class="btn btn-sm btn-primary text-white" href="">edit</a>
-                    <a role="button" class="btn btn-sm btn-danger text-white" href="">delete</a>
+                    <a role="button" class="btn btn-sm btn-danger text-white" href="<?= url('admin/post/delete/' . $post['id']) ?>">delete</a>
                 </td>
             </tr>
             <?php } ?>

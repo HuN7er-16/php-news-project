@@ -181,6 +181,8 @@ uri('admin/post/store', 'Admin\Post', 'store', 'POST');
 uri('admin/post/edit/{id}', 'Admin\Post', 'edit');
 uri('admin/post/update/{id}', 'Admin\Post', 'update', 'POST');
 uri('admin/post/delete/{id}', 'Admin\Post', 'delete');
+uri('admin/post/selected/{id}', 'Admin\Post', 'selected');
+uri('admin/post/breaking-news/{id}', 'Admin\Post', 'breakingNews');
 
 
 echo '404- page not found';
