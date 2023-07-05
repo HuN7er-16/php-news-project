@@ -19,8 +19,14 @@ $(document).ready(function(){
         $("#published_at_view").persianDatepicker({
 
                 format: 'YYYY-MM-DD HH:mm:ss',
-                toolbox:{
-                        calendarSwitch:{
+                toolbox: {
+                        calendarSwitch: {
+                                enabled: true
+                        }
+                },
+                timePicker: {
+                        enabled: true,
+                        meridiem: {
                                 enabled: true
                         }
                 },

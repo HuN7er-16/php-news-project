@@ -48,10 +48,10 @@ require_once(BASE_PATH . '/template/admin/layouts/header.php');
                     
                 </td>
                 <td>
-                <?= $post['user_id'] ?>
+                    <?= $post['email'] ?>
                 </td>
                 <td>
-                    ss
+                    <?= $post['category_name'] ?>
                 </td>
                 <td><img style="width: 80px;" src="<?= asset($post['image']) ?>" alt=""></td>
                 <td style="width: 25rem;">

@@ -21,6 +21,7 @@ require_once 'activities/Admin/Admin.php';
 require_once 'activities/Admin/Category.php';
 require_once 'activities/Admin/Post.php';
 require_once 'activities/Admin/Banner.php';
+require_once 'activities/Admin/User.php';
 
 
 
@@ -192,6 +193,14 @@ uri('admin/banner/store', 'Admin\Banner', 'store', 'POST');
 uri('admin/banner/edit/{id}', 'Admin\Banner', 'edit');
 uri('admin/banner/update/{id}', 'Admin\Banner', 'update', 'POST');
 uri('admin/banner/delete/{id}', 'Admin\Banner', 'delete');
+
+//users
+uri('admin/user', 'Admin\User', 'index');
+uri('admin/user/edit/{id}', 'Admin\User', 'edit');
+uri('admin/user/update/{id}', 'Admin\User', 'update', 'POST');
+uri('admin/user/delete/{id}', 'Admin\User', 'delete');
+uri('admin/user/permission/{id}', 'Admin\User', 'permission');
+
 
 
 echo '404- page not found';
