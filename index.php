@@ -26,6 +26,19 @@ require_once 'activities/Admin/User.php';
 
 
 //helpers
+spl_autoload_register(function($className){
+
+    $path = BASE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
+    include $path . $className . '.php';
+
+});
+
+function jalaliDate($date){
+
+    return \Parsidev\Jalali\jDate::forge($date)->format('datetime');
+
+}
+
 function uri($reservedUrl, $class, $method, $requestMethod = 'GET'){
 
     //current url array
