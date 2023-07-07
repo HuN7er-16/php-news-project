@@ -22,6 +22,7 @@ require_once 'activities/Admin/Category.php';
 require_once 'activities/Admin/Post.php';
 require_once 'activities/Admin/Banner.php';
 require_once 'activities/Admin/User.php';
+require_once 'activities/Admin/Comment.php';
 
 
 
@@ -214,6 +215,9 @@ uri('admin/user/update/{id}', 'Admin\User', 'update', 'POST');
 uri('admin/user/delete/{id}', 'Admin\User', 'delete');
 uri('admin/user/permission/{id}', 'Admin\User', 'permission');
 
+//comments
+uri('admin/comment', 'Admin\Comment', 'index');
+uri('admin/comment/change-status/{id}', 'Admin\Comment', 'changeStatus');
 
 
 echo '404- page not found';
