@@ -25,6 +25,7 @@ class User extends Admin{
     public function update($request, $id){
 
         $db = new DataBase();
+        $request = ['username' => $request['username'], 'permission' => $request['permission']];
         $db->update('users', $id, array_keys($request), $request);
         $this->redirect('admin/user');
 
