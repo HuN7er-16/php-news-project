@@ -231,8 +231,8 @@ uri('admin/menu/delete/{id}', 'Admin\Menu', 'delete');
 
 //setting
 uri('admin/setting', 'Admin\Setting', 'index');
-uri('admin/setting/edit/{id}', 'Admin\Setting', 'edit');
-uri('admin/setting/update/{id}', 'Admin\Setting', 'update', 'POST');
+uri('admin/setting/edit', 'Admin\Setting', 'edit');
+uri('admin/setting/update', 'Admin\Setting', 'update', 'POST');
 
 echo '404- page not found';
 

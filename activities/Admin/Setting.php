@@ -13,19 +13,49 @@ class Setting extends Admin{
         require_once (BASE_PATH . '/template/admin/setting/index.php');
     }
     
-    public function edit($id){
+    public function edit(){
 
         $db = new DataBase();
-        $setting = $db->select('SELECT * FROM setting WHERE `id` = ?;', [$id])->fetch();
+        $setting = $db->select('SELECT * FROM setting;')->fetch();
         require_once (BASE_PATH . '/template/admin/setting/edit.php');
 
     }
 
-    public function update($request, $id){
+    public function update($request){
 
         $db = new DataBase();
-        $db->update('categories', $id, array_keys($request), $request);
-        $this->redirect('admin/category');
+        $setting = $db->select('SELECT * FROM setting')->fetch();
+        if($request['logo']['tmp_name'] != ''){
+
+            $this->removeImage($request['logo']);
+            $request['logo'] = $this->saveImage($request['logo'], 'setting', 'logo');
+
+        }else{
+            
+            unset($request['logo']);
+
+        }
+
+        if($request['icon']['tmp_name'] != ''){
+
+            $this->removeImage($request['icon']);
+            $request['icon'] = $this->saveImage($request['icon'], 'setting', 'icon');
+
+        }else{
+            
+            unset($request['icon']);
+
+        }
+        if(!empty($setting)){
+    
+            $db->update('setting', $setting['id'], array_keys($request), $request);
+
+        }else{
+
+            $db->insert('setting', array_keys($request), $request);
+
+        }
+        $this->redirect('admin/setting');
 
     }
 
