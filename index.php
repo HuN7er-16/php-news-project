@@ -24,6 +24,7 @@ require_once 'activities/Admin/Banner.php';
 require_once 'activities/Admin/User.php';
 require_once 'activities/Admin/Comment.php';
 require_once 'activities/Admin/Menu.php';
+require_once 'activities/Admin/Setting.php';
 
 
 
@@ -228,6 +229,10 @@ uri('admin/menu/edit/{id}', 'Admin\Menu', 'edit');
 uri('admin/menu/update/{id}', 'Admin\Menu', 'update', 'POST');
 uri('admin/menu/delete/{id}', 'Admin\Menu', 'delete');
 
+//setting
+uri('admin/setting', 'Admin\Setting', 'index');
+uri('admin/setting/edit/{id}', 'Admin\Setting', 'edit');
+uri('admin/setting/update/{id}', 'Admin\Setting', 'update', 'POST');
 
 echo '404- page not found';
 
