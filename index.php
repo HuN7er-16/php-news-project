@@ -2,6 +2,9 @@
 
 
 //session start
+
+use Auth\Auth;
+
 session_start();
 
 
@@ -14,6 +17,16 @@ define('DB_NAME', 'news_project');
 define('DB_USERNAME', 'Amirali_Hosseini');
 define('DB_PASSWORD', '44266007');
 
+//mail
+define('MAIL_HOST', 'smtp.gmail.com');
+define('SMTP_AUTH', true);
+define('MAIL_USERNAME', 'aliamirhosseini216@gmail.com');
+define('MAIL_PASSWORD', 'amirali1379');
+define('MAIL_PORT', 587);
+define('SENDER_MAIL', 'aliamirhosseini216@gmail.com');
+define('SENDER_NAME', 'وبسایت خبری اولیه');
+
+
 
 require_once 'database/DataBase.php';
 require_once 'database/CreateDB.php';
@@ -25,6 +38,7 @@ require_once 'activities/Admin/User.php';
 require_once 'activities/Admin/Comment.php';
 require_once 'activities/Admin/Menu.php';
 require_once 'activities/Admin/Setting.php';
+require_once 'activities/Auth/Auth.php';
 
 
 
@@ -35,6 +49,10 @@ spl_autoload_register(function($className){
     include $path . $className . '.php';
 
 });
+
+
+$auth = new Auth();
+$auth->sendMail('aliamirhosseini216@gmail.com', 'test', '<p>test</p>');
 
 function jalaliDate($date){
 
