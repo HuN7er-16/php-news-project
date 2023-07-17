@@ -51,8 +51,8 @@ spl_autoload_register(function($className){
 });
 
 
-$auth = new Auth();
-$auth->sendMail('aliamirhosseini216@gmail.com', 'test', '<p>test</p>');
+// $auth = new Auth();
+// $auth->sendMail('aliamirhosseini216@gmail.com', 'test', '<p>test</p>');
 
 function jalaliDate($date){
 
@@ -251,6 +251,10 @@ uri('admin/menu/delete/{id}', 'Admin\Menu', 'delete');
 uri('admin/setting', 'Admin\Setting', 'index');
 uri('admin/setting/edit', 'Admin\Setting', 'edit');
 uri('admin/setting/update', 'Admin\Setting', 'update', 'POST');
+
+//Auth
+uri('register', 'Auth\Auth', 'register');
+uri('register/store', 'Auth\Auth', 'store', 'POST');
 
 echo '404- page not found';
 

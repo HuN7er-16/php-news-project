@@ -2,6 +2,7 @@
 
 namespace Auth;
 
+use database\DataBase;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -29,7 +30,24 @@ class Auth
         $hashPassword = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function sendMail($emailAddress, $subject, $body)
+    private function random(){
+        
+        return bin2hex(openssl_random_pseudo_bytes(32));
+
+    }
+
+    public function activasionMessage($username, $verifyToken){
+
+        $message = '
+        <h1>فعال سازی حساب کاربری</h1>
+        <p>'. $username .' عزیز برای فعال سازی حساب کاربری خود روی لینک زیر کلیک کنید</p>
+        <div><a href="">فعال سازی حساب</a></div>
+        ';
+        return $message;
+
+    }
+
+    private function sendMail($emailAddress, $subject, $body)
     {
 
         //Create an instance; passing `true` enables exceptions
@@ -64,5 +82,57 @@ class Auth
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             return false;
         }
+    }
+
+    public function register(){
+        
+        require_once (BASE_PATH . '/template/auth/register.php');
+
+    }
+
+    public function registerStore($request){
+
+        if(empty($request['email']) or empty($request['username']) or empty($request['password'])){
+
+            $this->redirectBack();
+
+        }elseif(strlen($request['password']) < 8){
+
+            $this->redirectBack();
+
+        }elseif(!filter_var($request['email'], FILTER_VALIDATE_EMAIL)){
+
+            $this->redirectBack();
+
+        }else{
+
+            $db = new DataBase();
+            $user = $db->select('SELECT * FROM `users` WHERE `email` = ?', $request['email'])->fetch();
+            if($user != null){
+
+                $this->redirectBack();
+
+            }else{
+
+                $randomToken = $this->random();
+                $activationMessage = $this->activasionMessage($request['username'], $randomToken);
+                $result = $this->sendMail($request['email'], 'فعال سازی حساب کاربری', $activationMessage);
+                if($result){
+
+                    $request['verify_token'] = $randomToken;
+                    $request['password'] = $this->hash($request['password']);
+                    $db->insert('users', array_keys($request), $request);
+                    $this->redirect('login');
+
+                }else{
+
+                    $this->redirectBack();
+
+                }
+
+            }
+
+        }
+
     }
 }
