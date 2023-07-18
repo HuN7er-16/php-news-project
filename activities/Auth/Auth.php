@@ -36,7 +36,7 @@ class Auth {
 
     }
 
-    public function activasionMessage($username, $verifyToken){
+    public function activationMessage($username, $verifyToken){
 
         $message = '
         <h1>فعال سازی حساب کاربری</h1>
@@ -118,7 +118,7 @@ class Auth {
             }else{
 
                 $randomToken = $this->random();
-                $activationMessage = $this->activasionMessage($request['username'], $randomToken);
+                $activationMessage = $this->activationMessage($request['username'], $randomToken);
                 $result = $this->sendMail($request['email'], 'فعال سازی حساب کاربری', $activationMessage);
                 if($result){
 
@@ -157,4 +157,85 @@ class Auth {
 
     }
 
+    public function login(){
+
+        require_once (BASE_PATH . '/template/auth/login.php');
+
+    }
+
+    public function checkLogin($request){
+        
+        if(empty($request['email']) or empty($request['password'])){
+
+            flash('login_error', 'تمامی فیلد ها الزامی است');
+            $this->redirectBack();
+
+        }else{
+
+            $db = new  DataBase();
+            $user = $db->select("SELECT * FROM users WHERE email = ?", [$request['email']])->fetch();
+            if($user != null){
+
+                if($request['password'] == $user['password'] && $user['is_active'] == 2){
+
+                    $_SESSION['user'] = $user['id'];
+                    $this->redirect('admin');
+
+                }else{
+                    
+                    flash('login_error', 'ایمیل یا رمز عبور اشتباه است');
+                    $this->redirectBack();  
+
+                }
+
+            }else{
+
+                flash('login_error', 'کاربری با این مشخصات یافت نشد');
+                $this->redirectBack(); 
+
+            }
+
+        }
+
+    }
+
+    public function checkAdmin(){
+
+        if(isset($_SESSION['user'])){
+
+            $db = new DataBase();
+            $user = $db->select("SELECT * FROM users WHERE id = ?;", [$_SESSION['user']])->fetch();
+            if($user != null){
+
+                if($user['permission'] != 'admin'){
+
+                    $this->redirect('home');
+
+                }
+
+            }else{
+
+                $this->redirect('home');
+
+            }
+
+        }else{
+
+            $this->redirect('home');
+
+        }
+
+    }
+
+    public function logout(){
+        
+        if(isset($_SESSION['user'])){
+
+            unset($_SESSION['user']);
+            session_destroy();
+
+        } 
+        $this->redirect('home');  
+
+    }
 }
