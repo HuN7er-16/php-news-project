@@ -254,7 +254,8 @@ uri('admin/setting/update', 'Admin\Setting', 'update', 'POST');
 
 //Auth
 uri('register', 'Auth\Auth', 'register');
-uri('register/store', 'Auth\Auth', 'store', 'POST');
+uri('register/store', 'Auth\Auth', 'registerStore', 'POST');
+uri('activation/{verify_token}', 'Auth\Auth', 'activation');
 
 echo '404- page not found';
 

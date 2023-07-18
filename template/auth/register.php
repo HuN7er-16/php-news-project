@@ -17,9 +17,16 @@
                         Register
                     </span>
 
-                    <div class="mb-2 alert alert-danger"> <small class="form-text text-danger">خطا</small> </div>
+                    <?php 
+                    
+                        $message = flash('register_error');
+                        if(!empty($message)){
+            
+                    ?>
 
+                    <div class="mb-2 alert alert-danger"> <small class="form-text text-danger"><?= $message ?></small> </div>
 
+                    <?php } ?>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="username" placeholder="Username">
